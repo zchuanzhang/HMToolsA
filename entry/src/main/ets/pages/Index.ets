@@ -50,7 +50,7 @@ struct Index {
             bottomRight : 8
           })
           .onClick(() => {
-
+            DataVM.pushToVC(model.title);
           })
           .width('90%')
           .height(40)
