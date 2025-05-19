@@ -31,7 +31,10 @@ static async getRawfileData(name: string): Promise<Array<DataModel>> {
 
       }
         break
-      case '切圆角': {
+      case '传递参数': {
+        router.pushUrl({
+          url: "pages/SubPages/ParameterTransfer"
+        })
 
       }
         break
