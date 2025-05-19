@@ -79,11 +79,11 @@ async function queryName(context: Context, name: string): Promise<relationalStor
     name: "TestStore.db",
     securityLevel: relationalStore.SecurityLevel.S1
   }
-  console.log('获取数据库数据 开始查询名字');
+  console.log('获取数据库数据 开始查询名字0 - ' + name);
   let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
   let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test00Table");
   predicates.equalTo('name', name)
-  // predicates.and().equalTo('age', 20)
+  predicates.and().equalTo('salary', 5000)
   let resultSet = await store.query(predicates);
   let index = 0;
   let result = new Array<relationalStore.ValuesBucket>(resultSet.rowCount);
@@ -92,7 +92,7 @@ async function queryName(context: Context, name: string): Promise<relationalStor
     result[index++] = resultSet.getRow()
   }while (resultSet.goToNextRow())
   resultSet.close()
-  console.log('获取数据库数据 开始查询名字' + ' ' + json.stringify(result));
+  console.log('获取数据库数据 开始查询名字1' + ' ' + json.stringify(result));
   let index0 = 0;
   for (let v of result) {
     console.log(`获取数据库数据 name Row[${index0}].id = ${v.id}`);
@@ -159,12 +159,9 @@ struct DataBaseSave {
           this.count++;
 
           console.log('获取数据库数据 走了这里1')
-          let ret0 = await taskpool.execute(queryName, context, 'zhangsan0') as Array<relationalStore.ValuesBucket>
+          let ret0 = await taskpool.execute(queryName, context, 'zhangsan1') as Array<relationalStore.ValuesBucket>
 
         })
-        .backgroundColor(Color.Red)
-        .width(100)
-        .height(300)
 
       Text('开始测试')
         .fontSize(30)
@@ -174,11 +171,9 @@ struct DataBaseSave {
 
           })
         })
-        .backgroundColor(Color.Blue)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor(Color.Yellow)
   }
 }
 
