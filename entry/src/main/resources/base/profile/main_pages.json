@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/CornerView",
-    "pages/SubPages/ParameterTransfer"
+    "pages/SubPages/ParameterTransfer",
+    "pages/SubPages/DataBaseSave"
   ]
 }

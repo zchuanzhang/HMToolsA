@@ -38,7 +38,10 @@ static async getRawfileData(name: string): Promise<Array<DataModel>> {
 
       }
         break
-      case '切圆角': {
+      case '数据库多线程存储': {
+        router.pushUrl({
+          url: "pages/SubPages/DataBaseSave"
+        })
 
       }
         break
