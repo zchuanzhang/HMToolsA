@@ -105,6 +105,33 @@ async function queryName(context: Context, name: string): Promise<relationalStor
 }
 
 @Concurrent
+async function queryAllColumes(context: Context): Promise<relationalStore.ValuesBucket[]>{
+
+  const CONFIG: relationalStore.StoreConfig = {
+    name: "TestStore.db",
+    securityLevel: relationalStore.SecurityLevel.S1
+  }
+
+  let store: relationalStore.RdbStore = await relationalStore.getRdbStore(context, CONFIG);
+  // let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("testTable");
+  const QUERY_ALLCOLUMN_SQL = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = testTable AND TABLE_SCHEMA = TestStore";
+  let resultSet = await store.querySql(QUERY_ALLCOLUMN_SQL);
+  let index = 0;
+  let result = new Array<relationalStore.ValuesBucket>(resultSet.rowCount);
+  resultSet.goToFirstRow()
+  do {
+    result[index++] = resultSet.getRow()
+  }while (resultSet.goToNextRow())
+  resultSet.close()
+
+  console.log('获取数据库数据 获取所有字段 ' + json.stringify(result));
+
+  return result;
+
+
+}
+
+@Concurrent
 async function clear(context: Context) {
   const CONFIG: relationalStore.StoreConfig = {
     name: "TestStore.db",
@@ -160,6 +187,8 @@ struct DataBaseSave {
 
           console.log('获取数据库数据 走了这里1')
           let ret0 = await taskpool.execute(queryName, context, 'zhangsan1') as Array<relationalStore.ValuesBucket>
+
+          await taskpool.execute(queryAllColumes, context);
 
         })
 
