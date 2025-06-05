@@ -3,6 +3,8 @@
     "pages/Index",
     "pages/CornerView",
     "pages/SubPages/ParameterTransfer",
-    "pages/SubPages/DataBaseSave"
+    "pages/SubPages/DataBaseSave",
+    "pages/SubPages/NoticefactionView",
+    "pages/SubPages/CallbackView"
   ]
 }

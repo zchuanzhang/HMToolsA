@@ -45,12 +45,16 @@ static async getRawfileData(name: string): Promise<Array<DataModel>> {
 
       }
         break
-      case '切圆角': {
-
+      case '通知测试': {
+        router.pushUrl({
+          url: "pages/SubPages/NoticefactionView"
+        })
       }
         break
-      case '切圆角': {
-
+      case '方法回调': {
+        router.pushUrl({
+          url: "pages/SubPages/CallbackView"
+        })
       }
         break
       case '切圆角': {

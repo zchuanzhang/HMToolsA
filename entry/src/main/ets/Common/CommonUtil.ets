@@ -1,5 +1,5 @@
 import { Ability } from "@kit.AbilityKit";
-import { display } from "@kit.ArkUI";
+import { display, promptAction } from "@kit.ArkUI";
 
 export class CommonUtil {
 
@@ -17,6 +17,14 @@ export class CommonUtil {
 
   static getScreenH_vp(): number {
     return px2vp(display.getDefaultDisplaySync().height);
+  }
+
+  static showToast(msg: string) {
+    promptAction.showToast({
+      message: msg,
+      duration: 3,
+      alignment: Alignment.Center
+    })
   }
 
 }
