@@ -57,8 +57,10 @@ static async getRawfileData(name: string): Promise<Array<DataModel>> {
         })
       }
         break
-      case '切圆角': {
-
+      case '子控件传参': {
+        router.pushUrl({
+          url: "pages/SubPages/AnimalView"
+        })
       }
         break
       default :{

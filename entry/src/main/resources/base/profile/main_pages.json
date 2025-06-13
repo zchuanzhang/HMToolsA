@@ -5,6 +5,7 @@
     "pages/SubPages/ParameterTransfer",
     "pages/SubPages/DataBaseSave",
     "pages/SubPages/NoticefactionView",
-    "pages/SubPages/CallbackView"
+    "pages/SubPages/CallbackView",
+    "pages/SubPages/AnimalView"
   ]
 }
